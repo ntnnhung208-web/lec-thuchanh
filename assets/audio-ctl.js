@@ -1,10 +1,10 @@
 /* LEC · điều khiển audio chung: bấm lại nút đang phát để dừng, thanh "Dừng" nổi, tự tắt khi chuyển tab */
 (function () {
-  var media = new Set(), starter = null, lastClick = null, lastClickT = 0, hideT = null, bar = null;
+  var media = new Set(), starter = null, lastClick = null, lastClickT = 0, hideT = null, bar = null, active = false;
   var origPlay = HTMLMediaElement.prototype.play;
 
   function anyPlaying() { var p = false; media.forEach(function (m) { if (!m.paused && !m.ended) p = true; }); return p; }
-  function stopAll() { media.forEach(function (m) { try { m.pause(); } catch (e) {} }); }
+  function stopAll() { try { if (typeof window.stopSay === 'function') window.stopSay(); } catch (e) {} media.forEach(function (m) { try { m.pause(); } catch (e) {} }); }
   function swapIcon(el, on) {
     if (!el) return;
     var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
@@ -22,14 +22,14 @@
     document.head.appendChild(st);
     bar = document.createElement('div'); bar.id = 'lecStop';
     bar.innerHTML = '<span>🔊 Đang phát…</span><button type="button">⏹ Dừng</button>';
-    bar.querySelector('button').addEventListener('click', function (e) { e.stopPropagation(); stopAll(); });
+    bar.querySelector('button').addEventListener('click', function (e) { e.stopPropagation(); stopAll(); active = false; bar.style.display = 'none'; swapIcon(starter, false); if (starter) starter.classList.remove('lec-on'); });
     document.body.appendChild(bar);
   }
   function show(on) {
     ensureBar(); if (!bar) return;
     clearTimeout(hideT);
-    if (on) { bar.style.display = 'flex'; }
-    else hideT = setTimeout(function () { if (!anyPlaying()) { bar.style.display = 'none'; swapIcon(starter, false); if (starter) starter.classList.remove('lec-on'); } }, 700);
+    if (on) { active = true; bar.style.display = 'flex'; }
+    else hideT = setTimeout(function () { if (!anyPlaying()) { active = false; bar.style.display = 'none'; swapIcon(starter, false); if (starter) starter.classList.remove('lec-on'); } }, 700);
   }
   function track(m) {
     if (media.has(m)) return; media.add(m);
@@ -52,10 +52,10 @@
     var t = e.target; if (!(t instanceof Element)) return;
     if (bar && bar.contains(t)) return;
     if (t.closest('input, textarea, select, label')) return;
-    if (isTab(t)) { stopAll(); return; }
+    if (isTab(t)) { stopAll(); if (bar) { active = false; bar.style.display = 'none'; } return; }
     var el = clickable(t);
-    if (starter && anyPlaying() && el && (el === starter || starter.contains(t))) {
-      e.preventDefault(); e.stopImmediatePropagation(); stopAll(); return;
+    if (starter && (active || anyPlaying()) && el && (el === starter || starter.contains(t))) {
+      e.preventDefault(); e.stopImmediatePropagation(); stopAll(); active = false; bar.style.display = 'none'; swapIcon(starter, false); starter.classList.remove('lec-on'); return;
     }
     lastClick = t.closest('button, [onclick], a, .play') || el; lastClickT = Date.now();
   }, true);
