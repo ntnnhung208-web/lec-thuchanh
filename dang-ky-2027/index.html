@@ -53,11 +53,11 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding:34px 0 10px}
 
 <form id="fm" novalidate>
 <label for="n">Họ và tên *</label><input id="n" autocomplete="name" placeholder="VD: Nguyễn Thu Hà">
-<label for="c">Mã lớp *</label><input id="c" placeholder="VD: DE01-K12">
+<label for="c">Mã lớp *</label><input id="c" placeholder="VD: L123">
 <div class="two"><div><label for="k">Khóa đang học *</label><select id="k"><option value="">— Chọn khóa —</option><option>Giao tiếp Đời Sống (DE)</option><option>Giao tiếp Công Việc (BE)</option></select></div>
 <div><label for="l">Level đang theo học *</label><select id="l"><option value="">— Chọn level —</option><option>Level 0-1</option><option>Level 1</option><option>Level 2</option><option>Level 3</option><option>Level 4</option><option>Chưa rõ</option></select></div></div>
 <label for="e">Email nhận link *</label><input id="e" type="email" autocomplete="email" placeholder="email.cua.ban@gmail.com">
-<button id="sb" type="submit">Đăng ký nhận quà 2027</button><div class="err" id="er"></div>
+<button id="sb" type="submit">Đăng ký nhận Web thực hành LEC</button><div class="err" id="er"></div>
 </form>
 <div class="done" id="ok"><b>🎉 Đăng ký thành công!</b>Cảm ơn bạn. Link web thực hành 2027 của level bạn đăng ký sẽ được gửi về email trong tháng 12/2026.</div>
 
@@ -73,5 +73,5 @@ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){er.textContent='Email chưa đúng 
 const b=$('sb');b.disabled=true;b.textContent='Đang gửi…';
 const p=new URLSearchParams();p.append('entry.212831706',n);p.append('entry.2141929921',c);p.append('entry.2139625720',k+' · '+l);p.append('entry.2108566730',e);
 try{await fetch(URL_,{method:'POST',mode:'no-cors',body:p});$('fm').style.display='none';$('ok').style.display='block';$('ok').scrollIntoView({behavior:'smooth'})}
-catch(x){b.disabled=false;b.textContent='Đăng ký nhận quà 2027';er.textContent='Gửi chưa được, bạn kiểm tra mạng rồi thử lại nhé';er.style.display='block'}});
+catch(x){b.disabled=false;b.textContent='Đăng ký nhận Web thực hành LEC';er.textContent='Gửi chưa được, bạn kiểm tra mạng rồi thử lại nhé';er.style.display='block'}});
 </script></body></html>
