@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FINAL TEST · Công Việc Level 3 · Lucina English Class</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pu:#5B2A86;--or:#F28C28;--t1:#F3EEFC;--t2:#FFF3E6;--ink:#2D1B45;--mu:#8F7BB3;--ok:#1E9E6A;--bad:#D64545}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,system-ui,sans-serif;color:var(--ink);background:#fff}
+header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #EEE6F7;position:sticky;top:0;background:#fff;z-index:5}
+header img{height:40px}header .t h1{margin:0;font-size:18px;color:var(--pu)}header .t p{margin:2px 0 0;font-size:13px;color:var(--mu)}
+main{max-width:760px;margin:0 auto;padding:22px 18px 60px}
+.steps{display:flex;gap:8px;margin-bottom:22px}.steps span{flex:1;text-align:center;font-size:13px;font-weight:700;padding:10px 6px;border-radius:99px;background:var(--t1);color:var(--mu)}
+.steps span.on{background:var(--pu);color:#fff}.steps span.done{background:#E3F6EE;color:var(--ok)}
+.sec{display:none}.sec.on{display:block}
+h2{color:var(--pu);font-size:24px;margin:0 0 8px}p.h{color:var(--mu);line-height:1.6;margin:0 0 18px;font-size:15px}
+label{display:block;font-weight:700;color:var(--pu);margin:16px 0 6px}label i{color:var(--bad);font-style:normal}
+input[type=text],textarea{width:100%;font:inherit;font-size:17px;padding:14px 16px;border:2px solid #E3D8F2;border-radius:16px;outline:none}
+input[type=text]:focus,textarea:focus{border-color:var(--pu)}
+.btn{font:inherit;font-weight:800;font-size:17px;border:0;border-radius:99px;padding:15px 26px;cursor:pointer;background:var(--pu);color:#fff}
+.btn.o{background:var(--or)}.btn.l{background:var(--t1);color:var(--pu)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px}.row.c{justify-content:center}.row.sb{justify-content:space-between}
+.note{background:var(--t2);border-radius:18px;padding:16px 18px;line-height:1.65;font-size:15px}.note b{color:var(--or)}
+.qc{background:var(--t1);border-radius:26px;padding:26px 22px;text-align:center}
+.qn{font-weight:800;color:var(--or);font-size:14px;letter-spacing:.5px}.qu{color:var(--mu);font-size:14px;margin-top:4px}
+.big{width:118px;height:118px;border-radius:50%;border:0;background:var(--pu);color:#fff;font-size:44px;cursor:pointer;margin:22px auto 10px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(91,42,134,.25)}
+.big.on{background:var(--or)}.st{font-size:14px;color:var(--mu);min-height:20px}
+.qt{font-size:22px;font-weight:700;color:var(--pu);line-height:1.45;margin:16px 0 0;display:none}.qt.on{display:block}
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:18px 0 0}.dots i{width:12px;height:12px;border-radius:50%;background:#DCCDEE}.dots i.on{background:var(--pu)}.dots i.done{background:var(--ok)}
+.drop{border:2px dashed #CDB8E8;border-radius:20px;padding:26px 18px;text-align:center;background:#FBF8FF;cursor:pointer}
+.drop b{color:var(--pu);font-size:17px}.files{margin:12px 0 0;padding:0;list-style:none}.files li{background:var(--t1);border-radius:12px;padding:10px 14px;margin-top:8px;font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.files li button{border:0;background:none;color:var(--bad);font-weight:800;cursor:pointer}
+.msg{margin-top:14px;font-weight:700;line-height:1.5}.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+.bar{height:10px;background:var(--t1);border-radius:99px;overflow:hidden;margin-top:14px;display:none}.bar i{display:block;height:100%;width:0;background:var(--or);transition:width .3s}
+.done{text-align:center;padding:30px 10px}.done .ic{font-size:64px}.who{background:var(--t1);border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.7}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:24px 0}
+</style></head><body>
+<header><img src="/qua-tang/logo.png" alt="LEC"><div class="t"><h1>FINAL TEST · Speaking</h1><p>Giao Tiếp Công Việc · Level 3 · Unit 13–24</p></div></header>
+<main>
+<div class="steps"><span id="s1" class="on">1 · Thông tin</span><span id="s2">2 · Làm bài</span><span id="s3">3 · Nộp bài</span></div>
+
+<section class="sec on" id="p1">
+<h2>Thông tin học viên</h2><p class="h">Điền đủ 3 thông tin dưới đây rồi bấm "Vào làm bài".</p>
+<label>Họ và tên <i>*</i></label><input type="text" id="fName" placeholder="VD: Nguyễn Thị Lan" autocomplete="name">
+<label>Mã lớp <i>*</i></label><input type="text" id="fClass" placeholder="VD: L123">
+<label>Tên tiếng Anh của giáo viên <i>*</i></label><input type="text" id="fTeacher" placeholder="VD: Lucy">
+<div class="msg err" id="m1"></div>
+<div class="row"><button class="btn" onclick="go2()">Vào làm bài →</button></div>
+</section>
+
+<section class="sec" id="p2">
+<h2>Làm bài nói</h2>
+<div class="note">
+<b>Trước khi bắt đầu:</b><br>
+1. Dùng <b>một điện thoại hoặc máy khác</b> để ghi âm, bấm ghi âm <b>một lần cho cả bài</b>.<br>
+2. Mở đầu bản ghi: đọc họ tên và mã lớp của bạn.<br>
+3. Bấm ▶ nghe giáo viên hỏi. Nghe xong, trả lời ít nhất 3–4 câu. Có thể bấm nghe lại nếu chưa rõ.<br>
+4. Cố gắng <b>chỉ nghe rồi tự trả lời</b>. Nút "Hiện chữ câu hỏi" chỉ mở sau khi nghe đủ 3 lần, và <b>số lần nghe, số lần hiện chữ được gửi kèm bài cho giáo viên</b>.<br>
+5. Trả lời xong thì bấm "Câu tiếp". Có 12 câu hỏi.
+</div>
+<div style="height:18px"></div>
+<div class="qc">
+<div class="qn" id="qn">CÂU 1 / 12</div><div class="qu" id="qu"></div>
+<button class="big" id="pb" onclick="toggle()" aria-label="Nghe câu hỏi">▶</button>
+<div class="st" id="st">Bấm để nghe câu hỏi</div>
+<div class="qt" id="qt"></div>
+<div class="row c"><button class="btn l" onclick="showText()" id="tb">👀 Hiện chữ câu hỏi</button></div>
+<div class="dots" id="dots"></div>
+</div>
+<div class="row sb"><button class="btn l" onclick="move(-1)" id="bp">‹ Câu trước</button><button class="btn" onclick="move(1)" id="bn">Câu tiếp ›</button></div>
+</section>
+
+<section class="sec" id="p3">
+<h2>Nộp bài</h2><p class="h">Dừng ghi âm trên máy kia, chuyển file sang máy này (Zalo, email, Drive…) rồi chọn file để nộp. Nộp được nhiều file nếu bạn ghi thành nhiều đoạn.</p>
+<div class="who" id="who"></div>
+<label>File ghi âm bài nói <i>*</i></label>
+<div class="drop" onclick="document.getElementById('fi').click()"><b>📎 Chọn file ghi âm</b><br><span style="color:var(--mu);font-size:14px">mp3, m4a, wav, aac… hoặc video ngắn · tổng tối đa 30 MB</span></div>
+<input type="file" id="fi" accept="audio/*,video/*,.m4a,.mp3,.wav,.aac,.amr,.ogg,.webm,.mp4,.mov" multiple style="display:none" onchange="addFiles(this.files);this.value=''">
+<ul class="files" id="fl"></ul>
+<label>Ghi chú cho giáo viên (không bắt buộc)</label><textarea id="fNote" rows="3" placeholder="VD: Câu 5 em ghi âm ở đoạn thứ 2"></textarea>
+<div class="bar" id="bar"><i></i></div><div class="msg" id="m3"></div>
+<div class="row sb"><button class="btn l" onclick="show(2)">‹ Quay lại bài làm</button><button class="btn o" id="sb" onclick="submitTest()">Nộp bài ✓</button></div>
+</section>
+
+<section class="sec" id="p4"><div class="done"><div class="ic">🎉</div><h2>Nộp bài thành công!</h2><p class="h" id="dmsg">Giáo viên sẽ chấm và gửi nhận xét cho bạn. Cảm ơn bạn đã hoàn thành FINAL TEST.</p></div></section>
+</main>
+<footer>Lucina English Class · FINAL TEST Speaking · Công Việc Level 3</footer>
+<script>
+const ENDPOINT='https://script.google.com/macros/s/AKfycbzlQfUBCplcfIeM0QeW9L5mvjxR_a7-TX8FAWC12g6foiKwVQdRk_lFoiklil3yt9K1/exec';
+const TEST='FINAL TEST - Công Việc Level 3';
+const Q=[["Unit 13: Talking to the Boss", "How do you report problems to your manager?"], ["Unit 14: Talking to the Boss: Complaining", "What is the best way to complain professionally to your boss?"], ["Unit 15: Performance Review", "How do you usually prepare for a performance review?"], ["Unit 16: Quitting or Leaving Work", "How would you explain your reason for leaving a company?"], ["Unit 17: Meeting Flow", "What are the steps in running an effective meeting?"], ["Unit 18: Meeting Practice", "How do you contribute to a meeting?"], ["Unit 19: Presentation: Tips & Skills", "What do you think makes a great presentation?"], ["Unit 20: Presentation: Practice (Opening & Body)", "What topic would you choose to present at work, and why?"], ["Unit 21: Presentation: Practice (Ending & Q&A)", "How do you deal with nervousness during presentations?"], ["Unit 22: Business Trip: Preparation", "What do you usually pack for a business trip?"], ["Unit 23: Business Trip: On the Trip", "How do you prepare for a meeting while traveling?"], ["Unit 24: Knowledge Summary", "What are the three most important things you've learned from your job experience?"]];
+let cur=0,au=null,shown=false,files=[];const heard=new Set();
+const TK='lec-track-'+TEST;let PL=Array(Q.length).fill(0),RV=Array(Q.length).fill(0);
+try{const o=JSON.parse(localStorage.getItem(TK)||'{}');if(o.p&&o.p.length==Q.length){PL=o.p;RV=o.r;PL.forEach((v,i)=>{if(v)heard.add(i)})}}catch(e){}
+function saveT(){try{localStorage.setItem(TK,JSON.stringify({p:PL,r:RV}))}catch(e){}}
+const NEED=3;
+function tbState(){const b=$('tb');if(PL[cur]<NEED){b.disabled=true;b.textContent='🔒 Hiện chữ câu hỏi (nghe đủ '+NEED+' lần: '+PL[cur]+'/'+NEED+')';}else{b.disabled=false;b.textContent=shown?'🙈 Ẩn chữ câu hỏi':'👀 Hiện chữ câu hỏi'+(RV[cur]?' (đã hiện '+RV[cur]+' lần)':'')}}
+function track(){return Q.map((q,i)=>'Câu '+(i+1)+': '+(PL[i]?'nghe '+PL[i]+' lần, '+(RV[i]?'hiện chữ '+RV[i]+' lần':'tự trả lời'):'chưa nghe')).join('\n')}
+const $=id=>document.getElementById(id);
+function store(){try{localStorage.setItem('lec-final-be3',JSON.stringify({n:$('fName').value,c:$('fClass').value,t:$('fTeacher').value}))}catch(e){}}
+try{const o=JSON.parse(localStorage.getItem('lec-final-be3')||'{}');if(o.n)$('fName').value=o.n;if(o.c)$('fClass').value=o.c;if(o.t)$('fTeacher').value=o.t}catch(e){}
+function show(n){stopQ();document.querySelectorAll('.sec').forEach((s,i)=>s.classList.toggle('on',i==n-1));
+ ['s1','s2','s3'].forEach((s,i)=>{$(s).className=i+1<n?'done':(i+1==n?'on':'')});window.scrollTo(0,0)}
+function go2(){const n=$('fName').value.trim(),c=$('fClass').value.trim(),t=$('fTeacher').value.trim();
+ if(!n||!c||!t){$('m1').textContent='Vui lòng điền đủ Họ tên, Mã lớp và Tên giáo viên.';return}$('m1').textContent='';store();render();show(2)}
+function render(){const q=Q[cur];$('qn').textContent='CÂU '+(cur+1)+' / '+Q.length;$('qu').textContent=q[0];$('qt').textContent=q[1];
+ shown=false;$('qt').classList.remove('on');tbState();$('pb').textContent='▶';$('pb').classList.remove('on');$('st').textContent='Bấm để nghe câu hỏi';
+ $('bp').style.visibility=cur?'visible':'hidden';$('bn').textContent=cur==Q.length-1?'Xong, sang nộp bài ›':'Câu tiếp ›';
+ $('dots').innerHTML=Q.map((_,i)=>'<i class="'+(i==cur?'on':(heard.has(i)?'done':''))+'"></i>').join('')}
+function stopQ(){if(au){au.pause();au.currentTime=0;}$('pb').textContent='▶';$('pb').classList.remove('on')}
+function toggle(){if(au&&!au.paused){au.pause();$('pb').textContent='▶';$('pb').classList.remove('on');$('st').textContent='Đã tạm dừng · bấm để nghe tiếp';return}
+ const src='audio/q'+String(cur+1).padStart(2,'0')+'.mp3';
+ if(!au||!au.src.endsWith(src)){if(au)au.pause();au=new Audio(src);au.onended=()=>{$('pb').textContent='↻';$('pb').classList.remove('on');$('st').textContent='Đến lượt bạn trả lời · bấm ↻ để nghe lại';heard.add(cur);PL[cur]++;saveT();tbState();render2()}}
+ else if(au.ended)au.currentTime=0;
+ au.play();$('pb').textContent='⏸';$('pb').classList.add('on');$('st').textContent='Đang nghe… bấm ⏸ để tạm dừng'}
+function render2(){$('dots').innerHTML=Q.map((_,i)=>'<i class="'+(i==cur?'on':(heard.has(i)?'done':''))+'"></i>').join('')}
+function showText(){if(PL[cur]<NEED)return;shown=!shown;if(shown){RV[cur]++;saveT()}$('qt').classList.toggle('on',shown);tbState()}
+function move(d){stopQ();au=null;if(d>0&&cur==Q.length-1){$('who').innerHTML='<b>'+esc($('fName').value)+'</b> · Lớp '+esc($('fClass').value)+' · GV '+esc($('fTeacher').value)+'<br>'+TEST.replace(' - ',' · ');show(3);return}
+ cur=Math.max(0,Math.min(Q.length-1,cur+d));render()}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function addFiles(fs){for(const f of fs)files.push(f);listFiles()}
+function listFiles(){$('fl').innerHTML=files.map((f,i)=>'<li><span>🎧 '+esc(f.name)+' · '+(f.size/1048576).toFixed(1)+' MB</span><button onclick="files.splice('+i+',1);listFiles()">✕</button></li>').join('')}
+function b64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]);r.onerror=rej;r.readAsDataURL(f)})}
+async function submitTest(){const m=$('m3');m.className='msg';
+ if(!files.length){m.className='msg err';m.textContent='Bạn chưa chọn file ghi âm.';return}
+ const tot=files.reduce((a,f)=>a+f.size,0);if(tot>30*1048576){m.className='msg err';m.textContent='Tổng dung lượng quá 30 MB. Hãy gửi file ghi âm (m4a/mp3) thay vì video, hoặc cắt ngắn.';return}
+ $('sb').disabled=true;const bar=$('bar');bar.style.display='block';bar.firstChild.style.width='15%';m.textContent='Đang tải bài lên, vui lòng không đóng trang…';
+ try{const fl=[];for(const f of files)fl.push({name:f.name,type:f.type,data:await b64(f)});bar.firstChild.style.width='45%';
+  const body=JSON.stringify({name:$('fName').value.trim(),classCode:$('fClass').value.trim(),teacher:$('fTeacher').value.trim(),test:TEST,note:$('fNote').value.trim(),track:track(),shownCount:RV.filter(x=>x).length,files:fl});
+  const tick=setInterval(()=>{const w=parseFloat(bar.firstChild.style.width);if(w<90)bar.firstChild.style.width=(w+3)+'%'},800);
+  const r=await fetch(ENDPOINT,{method:'POST',body,headers:{'Content-Type':'text/plain;charset=utf-8'}});clearInterval(tick);
+  const j=await r.json();if(!j.ok)throw new Error(j.error||'Lỗi máy chủ');bar.firstChild.style.width='100%';
+  $('dmsg').textContent='Đã nhận '+j.files+' file của '+$('fName').value.trim()+' (lớp '+$('fClass').value.trim()+'). Giáo viên sẽ chấm và gửi nhận xét cho bạn.';show(4);$('s3').className='done';try{localStorage.removeItem(TK)}catch(e){}}
+ catch(e){m.className='msg err';m.textContent='Chưa nộp được bài ('+e.message+'). Kiểm tra mạng rồi bấm "Nộp bài" lại.';$('sb').disabled=false;bar.style.display='none'}}
+</script></body></html>
