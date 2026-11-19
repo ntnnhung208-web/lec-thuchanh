@@ -52,7 +52,8 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding:24px 0}
 1. Dùng <b>một điện thoại hoặc máy khác</b> để ghi âm, bấm ghi âm <b>một lần cho cả bài</b>.<br>
 2. Mở đầu bản ghi: đọc họ tên và mã lớp của bạn.<br>
 3. Bấm ▶ nghe giáo viên hỏi. Nghe xong, trả lời ít nhất 3–4 câu. Có thể bấm nghe lại nếu chưa rõ.<br>
-4. Trả lời xong thì bấm "Câu tiếp". Có 12 câu hỏi.
+4. Cố gắng <b>chỉ nghe rồi tự trả lời</b>. Nút "Hiện chữ câu hỏi" chỉ mở sau khi nghe đủ 3 lần, và <b>số lần nghe, số lần hiện chữ được gửi kèm bài cho giáo viên</b>.<br>
+5. Trả lời xong thì bấm "Câu tiếp". Có 12 câu hỏi.
 </div>
 <div style="height:18px"></div>
 <div class="qc">
@@ -86,6 +87,12 @@ const ENDPOINT='https://script.google.com/macros/s/AKfycbzlQfUBCplcfIeM0QeW9L5mv
 const TEST='MID TEST - Đời Sống Level 1';
 const Q=[["Unit 1: Introductions and Names", "What is your name? Can you tell me about yourself?"], ["Unit 2: Describing People", "Can you describe a friend or family member? What do they look like?"], ["Unit 3: Clothes", "What are you wearing today? How would you describe your clothes?"], ["Unit 4: Routines", "What do you do every morning when you wake up?"], ["Unit 5: Dates", "What is today's date? Can you tell me your birthday?"], ["Unit 6: Jobs", "What is your job, or what do you want to be in the future?"], ["Unit 7: Favorites", "What is your favorite hobby or activity?"], ["Unit 8: Sports and Exercise", "Do you play any sports? How often do you exercise?"], ["Unit 9: Locations", "Where do you live? Can you describe your city or town?"], ["Unit 10: The Family", "Can you tell me about your family? How many people are in your family?"], ["Unit 11: Entertainment", "What kind of movies or TV shows do you like to watch?"], ["Unit 12: Prices", "How much does your favorite food cost?"]];
 let cur=0,au=null,shown=false,files=[];const heard=new Set();
+const TK='lec-track-'+TEST;let PL=Array(Q.length).fill(0),RV=Array(Q.length).fill(0);
+try{const o=JSON.parse(localStorage.getItem(TK)||'{}');if(o.p&&o.p.length==Q.length){PL=o.p;RV=o.r;PL.forEach((v,i)=>{if(v)heard.add(i)})}}catch(e){}
+function saveT(){try{localStorage.setItem(TK,JSON.stringify({p:PL,r:RV}))}catch(e){}}
+const NEED=3;
+function tbState(){const b=$('tb');if(PL[cur]<NEED){b.disabled=true;b.textContent='🔒 Hiện chữ câu hỏi (nghe đủ '+NEED+' lần: '+PL[cur]+'/'+NEED+')';}else{b.disabled=false;b.textContent=shown?'🙈 Ẩn chữ câu hỏi':'👀 Hiện chữ câu hỏi'+(RV[cur]?' (đã hiện '+RV[cur]+' lần)':'')}}
+function track(){return Q.map((q,i)=>'Câu '+(i+1)+': nghe '+PL[i]+' lần, '+(RV[i]?'hiện chữ '+RV[i]+' lần':'tự trả lời')).join('\n')}
 const $=id=>document.getElementById(id);
 function store(){try{localStorage.setItem('lec-mid-de1',JSON.stringify({n:$('fName').value,c:$('fClass').value,t:$('fTeacher').value}))}catch(e){}}
 try{const o=JSON.parse(localStorage.getItem('lec-mid-de1')||'{}');if(o.n)$('fName').value=o.n;if(o.c)$('fClass').value=o.c;if(o.t)$('fTeacher').value=o.t}catch(e){}
@@ -94,17 +101,17 @@ function show(n){stopQ();document.querySelectorAll('.sec').forEach((s,i)=>s.clas
 function go2(){const n=$('fName').value.trim(),c=$('fClass').value.trim(),t=$('fTeacher').value.trim();
  if(!n||!c||!t){$('m1').textContent='Vui lòng điền đủ Họ tên, Mã lớp và Tên giáo viên.';return}$('m1').textContent='';store();render();show(2)}
 function render(){const q=Q[cur];$('qn').textContent='CÂU '+(cur+1)+' / '+Q.length;$('qu').textContent=q[0];$('qt').textContent=q[1];
- shown=false;$('qt').classList.remove('on');$('tb').textContent='👀 Hiện chữ câu hỏi';$('pb').textContent='▶';$('pb').classList.remove('on');$('st').textContent='Bấm để nghe câu hỏi';
+ shown=false;$('qt').classList.remove('on');tbState();$('pb').textContent='▶';$('pb').classList.remove('on');$('st').textContent='Bấm để nghe câu hỏi';
  $('bp').style.visibility=cur?'visible':'hidden';$('bn').textContent=cur==Q.length-1?'Xong, sang nộp bài ›':'Câu tiếp ›';
  $('dots').innerHTML=Q.map((_,i)=>'<i class="'+(i==cur?'on':(heard.has(i)?'done':''))+'"></i>').join('')}
 function stopQ(){if(au){au.pause();au.currentTime=0;}$('pb').textContent='▶';$('pb').classList.remove('on')}
 function toggle(){if(au&&!au.paused){au.pause();$('pb').textContent='▶';$('pb').classList.remove('on');$('st').textContent='Đã tạm dừng · bấm để nghe tiếp';return}
  const src='audio/q'+String(cur+1).padStart(2,'0')+'.mp3';
- if(!au||!au.src.endsWith(src)){if(au)au.pause();au=new Audio(src);au.onended=()=>{$('pb').textContent='↻';$('pb').classList.remove('on');$('st').textContent='Đến lượt bạn trả lời · bấm ↻ để nghe lại';heard.add(cur);render2()}}
+ if(!au||!au.src.endsWith(src)){if(au)au.pause();au=new Audio(src);au.onended=()=>{$('pb').textContent='↻';$('pb').classList.remove('on');$('st').textContent='Đến lượt bạn trả lời · bấm ↻ để nghe lại';heard.add(cur);PL[cur]++;saveT();tbState();render2()}}
  else if(au.ended)au.currentTime=0;
  au.play();$('pb').textContent='⏸';$('pb').classList.add('on');$('st').textContent='Đang nghe… bấm ⏸ để tạm dừng'}
 function render2(){$('dots').innerHTML=Q.map((_,i)=>'<i class="'+(i==cur?'on':(heard.has(i)?'done':''))+'"></i>').join('')}
-function showText(){shown=!shown;$('qt').classList.toggle('on',shown);$('tb').textContent=shown?'🙈 Ẩn chữ câu hỏi':'👀 Hiện chữ câu hỏi'}
+function showText(){if(PL[cur]<NEED)return;shown=!shown;if(shown){RV[cur]++;saveT()}$('qt').classList.toggle('on',shown);tbState()}
 function move(d){stopQ();au=null;if(d>0&&cur==Q.length-1){$('who').innerHTML='<b>'+esc($('fName').value)+'</b> · Lớp '+esc($('fClass').value)+' · GV '+esc($('fTeacher').value)+'<br>'+TEST.replace(' - ',' · ');show(3);return}
  cur=Math.max(0,Math.min(Q.length-1,cur+d));render()}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -116,10 +123,10 @@ async function submitTest(){const m=$('m3');m.className='msg';
  const tot=files.reduce((a,f)=>a+f.size,0);if(tot>30*1048576){m.className='msg err';m.textContent='Tổng dung lượng quá 30 MB. Hãy gửi file ghi âm (m4a/mp3) thay vì video, hoặc cắt ngắn.';return}
  $('sb').disabled=true;const bar=$('bar');bar.style.display='block';bar.firstChild.style.width='15%';m.textContent='Đang tải bài lên, vui lòng không đóng trang…';
  try{const fl=[];for(const f of files)fl.push({name:f.name,type:f.type,data:await b64(f)});bar.firstChild.style.width='45%';
-  const body=JSON.stringify({name:$('fName').value.trim(),classCode:$('fClass').value.trim(),teacher:$('fTeacher').value.trim(),test:TEST,note:$('fNote').value.trim(),files:fl});
+  const body=JSON.stringify({name:$('fName').value.trim(),classCode:$('fClass').value.trim(),teacher:$('fTeacher').value.trim(),test:TEST,note:$('fNote').value.trim(),track:track(),shownCount:RV.filter(x=>x).length,files:fl});
   const tick=setInterval(()=>{const w=parseFloat(bar.firstChild.style.width);if(w<90)bar.firstChild.style.width=(w+3)+'%'},800);
   const r=await fetch(ENDPOINT,{method:'POST',body,headers:{'Content-Type':'text/plain;charset=utf-8'}});clearInterval(tick);
   const j=await r.json();if(!j.ok)throw new Error(j.error||'Lỗi máy chủ');bar.firstChild.style.width='100%';
-  $('dmsg').textContent='Đã nhận '+j.files+' file của '+$('fName').value.trim()+' (lớp '+$('fClass').value.trim()+'). Giáo viên sẽ chấm và gửi nhận xét cho bạn.';show(4);$('s3').className='done'}
+  $('dmsg').textContent='Đã nhận '+j.files+' file của '+$('fName').value.trim()+' (lớp '+$('fClass').value.trim()+'). Giáo viên sẽ chấm và gửi nhận xét cho bạn.';show(4);$('s3').className='done';try{localStorage.removeItem(TK)}catch(e){}}
  catch(e){m.className='msg err';m.textContent='Chưa nộp được bài ('+e.message+'). Kiểm tra mạng rồi bấm "Nộp bài" lại.';$('sb').disabled=false;bar.style.display='none'}}
 </script></body></html>
