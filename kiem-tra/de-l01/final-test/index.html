@@ -92,7 +92,7 @@ try{const o=JSON.parse(localStorage.getItem(TK)||'{}');if(o.p&&o.p.length==Q.len
 function saveT(){try{localStorage.setItem(TK,JSON.stringify({p:PL,r:RV}))}catch(e){}}
 const NEED=3;
 function tbState(){const b=$('tb');if(PL[cur]<NEED){b.disabled=true;b.textContent='🔒 Hiện chữ câu hỏi (nghe đủ '+NEED+' lần: '+PL[cur]+'/'+NEED+')';}else{b.disabled=false;b.textContent=shown?'🙈 Ẩn chữ câu hỏi':'👀 Hiện chữ câu hỏi'+(RV[cur]?' (đã hiện '+RV[cur]+' lần)':'')}}
-function track(){return Q.map((q,i)=>'Câu '+(i+1)+': nghe '+PL[i]+' lần, '+(RV[i]?'hiện chữ '+RV[i]+' lần':'tự trả lời')).join('\n')}
+function track(){return Q.map((q,i)=>'Câu '+(i+1)+': '+(PL[i]?'nghe '+PL[i]+' lần, '+(RV[i]?'hiện chữ '+RV[i]+' lần':'tự trả lời'):'chưa nghe')).join('\n')}
 const $=id=>document.getElementById(id);
 function store(){try{localStorage.setItem('lec-final-de01',JSON.stringify({n:$('fName').value,c:$('fClass').value,t:$('fTeacher').value}))}catch(e){}}
 try{const o=JSON.parse(localStorage.getItem('lec-final-de01')||'{}');if(o.n)$('fName').value=o.n;if(o.c)$('fClass').value=o.c;if(o.t)$('fTeacher').value=o.t}catch(e){}
