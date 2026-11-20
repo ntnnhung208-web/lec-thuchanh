@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bài 09 · Locations · Đời Sống Level 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet"><style>:root{--pu:#5B2A86;--or:#F28C28;--t1:#F3EEFC;--t2:#FFF3E6;--ink:#2D1B45;--mu:#8F7BB3;--ok:#1E9E6A;--no:#D64545}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,system-ui,sans-serif;color:var(--ink);background:#fff;font-size:17px}
+header{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:5}
+header img{height:40px}header .t{flex:1}header h1{font-size:18px;margin:0;color:var(--pu)}header p{margin:2px 0 0;font-size:13px;color:var(--mu)}
+header a.back{color:var(--pu);text-decoration:none;font-weight:700;font-size:14px;background:var(--t1);padding:8px 12px;border-radius:99px;white-space:nowrap}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px 18px;border-bottom:1px solid #f1f1f1}
+nav button{border:0;background:var(--t1);color:var(--pu);font:700 15px Montserrat,sans-serif;padding:10px 16px;border-radius:99px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--pu);color:#fff}
+main{max-width:820px;margin:0 auto;padding:18px}
+h2{color:var(--pu);font-size:22px;margin:6px 0 4px}h3{color:var(--or);font-size:17px;margin:22px 0 8px}
+.hint{color:var(--mu);font-size:14px;margin:0 0 12px}
+.sec{display:none}.sec.on{display:block}
+.btn{border:0;background:var(--pu);color:#fff;font:700 15px Montserrat,sans-serif;padding:10px 18px;border-radius:99px;cursor:pointer}
+.btn.o{background:var(--or)}.btn.l{background:var(--t1);color:var(--pu)}
+.card{perspective:900px;height:210px;margin:10px 0;cursor:pointer}
+.ci{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.card.f .ci{transform:rotateY(180deg)}
+.fa,.fb{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+.fa{background:var(--t1)}.fb{background:var(--t2);transform:rotateY(180deg)}
+.fa b{font-size:34px;color:var(--pu)}.fa i{font-style:normal;color:var(--mu);margin-top:8px;font-size:18px}.fb b{font-size:26px;color:var(--ink)}
+.row{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.q{background:#fff;border:2px solid var(--t1);border-radius:18px;padding:16px;margin:12px 0}
+.q .w{font-size:22px;font-weight:800;color:var(--pu);margin-bottom:10px}
+.opt{display:block;width:100%;text-align:left;border:2px solid #eee;background:#fff;border-radius:14px;padding:12px 14px;margin:7px 0;font:600 16px Montserrat,sans-serif;cursor:pointer;color:var(--ink)}
+.opt.ok{border-color:var(--ok);background:#E8F7F0}.opt.no{border-color:var(--no);background:#FDECEC}
+.score{font-weight:800;color:var(--pu);font-size:20px;margin:16px 0}
+.dl{background:var(--t1);border-radius:18px;padding:14px 16px;margin:12px 0}
+.dl .sp{font-weight:800;color:var(--or);font-size:14px}
+.dl input{width:100%;font:600 18px Montserrat,sans-serif;padding:12px;border:2px solid #e3dcef;border-radius:12px;margin-top:8px}
+.dl input.ok{border-color:var(--ok);background:#E8F7F0}.dl input.no{border-color:var(--no);background:#FDECEC}
+.ans{margin-top:8px;font-size:15px;color:var(--ok);font-weight:700;display:none}.ans b{background:#E8F7F0;padding:1px 6px;border-radius:6px}
+.mk{display:none;margin-top:8px;font-weight:800;font-size:15px}.mk.ok{display:block;color:var(--ok)}.mk.no{display:block;color:var(--no)}
+.q .w .ip{font-size:16px;font-weight:600;color:var(--mu);margin-left:6px}.ps{display:inline-block;font-size:13px;font-weight:800;color:var(--or);background:var(--t2);border-radius:99px;padding:2px 10px;margin-left:6px;vertical-align:middle}
+.fa .ps{margin:10px 0 0;font-size:14px}
+.dl input.gap{display:inline-block;width:120px;font:700 17px Montserrat,sans-serif;padding:5px 8px;border-radius:10px;margin:2px 4px;vertical-align:middle}
+.line{font-size:20px;line-height:1.6;margin-top:6px}
+.play{border:0;background:var(--pu);color:#fff;border-radius:99px;width:40px;height:40px;font-size:16px;cursor:pointer;flex:none}
+.sl{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f0eaf8}
+.sl .en{font-size:20px;font-weight:700}.sl .en.h{color:transparent;text-shadow:0 0 9px rgba(45,27,69,.55);user-select:none}
+.task{background:var(--t2);border-radius:18px;padding:16px 18px}.task li{margin:6px 0}
+.speed{font-size:14px;color:var(--mu)}.speed button{border:0;background:var(--t1);color:var(--pu);border-radius:99px;padding:6px 10px;font:700 13px Montserrat;cursor:pointer;margin-left:4px}.speed button.on{background:var(--pu);color:#fff}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:30px 18px 90px}
+#stopbar{display:none;position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:99px;padding:8px 8px 8px 18px;gap:12px;align-items:center;box-shadow:0 6px 24px rgba(0,0,0,.25);z-index:20;font-weight:700;font-size:15px;white-space:nowrap}
+#stopbar button{border:0;background:var(--or);color:#fff;font:800 15px Montserrat,sans-serif;padding:10px 18px;border-radius:99px;cursor:pointer}
+</style></head><body>
+<header><img src="/thuc-hanh/logo.png" alt="LEC"><div class="t"><h1>Bài 09 · Locations</h1><p>Vị trí, địa điểm · Đời Sống Level 1</p></div><a class="back" href="/thuc-hanh/de-l1/">☰ 24 bài</a></header>
+<nav><button class="on" onclick="tab(0)">1 · Từ vựng</button><button onclick="tab(1)">2 · Nghe chép</button><button onclick="tab(2)">3 · Luyện nói</button></nav>
+<main>
+<section class="sec on"><h2>Từ vựng</h2><p class="hint">Chạm vào thẻ để lật xem nghĩa. Học xong thì làm bài kiểm tra bên dưới.</p>
+<div class="card" onclick="this.classList.toggle('f')"><div class="ci"><div class="fa" id="fcA"></div><div class="fb" id="fcB"></div></div></div>
+<div class="row"><button class="btn l" onclick="fcGo(-1)">‹ Trước</button><span id="fcN" style="font-weight:700;color:var(--mu)"></span><button class="btn l" onclick="fcGo(1)">Sau ›</button></div>
+<h3>Kiểm tra nhanh: chọn nghĩa đúng</h3><div id="qz"></div><div class="score" id="qzs"></div><div class="row"><button class="btn o" onclick="quiz()">Làm lại</button><button class="btn" onclick="tab(1)">Tiếp: Nghe chép →</button></div></section>
+<section class="sec"><h2>Nghe chép</h2><p class="hint">Nghe từng câu rồi gõ lại cả câu. Có thể nghe nhiều lần. Bấm ▶ để nghe. <span class="speed">Tốc độ: <button data-r="0.75" onclick="setRate(0.75)">0.75×</button><button data-r="1" class="on" onclick="setRate(1)">1×</button></span></p>
+<div class="row" style="justify-content:flex-start;margin-bottom:6px"><button class="btn l" onclick="play('/thuc-hanh/audio/u09-all.mp3',this)">▶ Nghe cả hội thoại</button></div>
+<div id="dc"></div><div class="score" id="dcs"></div><div class="row"><button class="btn o" onclick="dictCheck()">Chấm bài</button><button class="btn" onclick="tab(2)">Tiếp: Luyện nói →</button></div></section>
+<section class="sec"><h2>Luyện nói</h2>
+<h3>① Học thuộc hội thoại và nói lại</h3><p class="hint">Nghe từng câu, nói theo. Khi đã thuộc, bấm "Che chữ" và tự nói lại cả hội thoại. <span class="speed">Tốc độ: <button data-r="0.75" onclick="setRate(0.75)">0.75×</button><button data-r="1" class="on" onclick="setRate(1)">1×</button></span></p>
+<div class="row" style="justify-content:flex-start"><button class="btn l" onclick="hideAll(true)">🙈 Che chữ</button><button class="btn l" onclick="hideAll(false)">👀 Hiện chữ</button><button class="btn l" onclick="play('/thuc-hanh/audio/u09-all.mp3',this)">▶ Nghe cả bài</button></div>
+<div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-1.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">A</span><div class="en">Excuse me. Where is the bank?</div></div></div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-2.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">B</span><div class="en">It&#x27;s on Main Street, next to the post office.</div></div></div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-3.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">A</span><div class="en">Is there a coffee shop near here?</div></div></div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-4.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">B</span><div class="en">Yes. There&#x27;s one across from the bank.</div></div></div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-5.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">A</span><div class="en">Is it between the bank and the hotel?</div></div></div><div class="sl"><button class="play" onclick="play('/thuc-hanh/audio/u09-6.mp3',this)">▶</button><div><span class="sp" style="color:var(--or);font-weight:800;font-size:13px">B</span><div class="en">No, it&#x27;s on the corner. You can&#x27;t miss it.</div></div></div></div>
+<h3>② Quay video nói theo yêu cầu</h3><div class="task"><b>Chủ đề: Locations</b><p style="margin:8px 0">Chuẩn bị bài nói ít nhất 10 câu, dùng từ vựng và mẫu câu trong bài. Quay video và gửi cho giáo viên.</p><ul><li>Where do you live?</li><li>Chỉ vào các đồ vật trong nhà của bạn và nói về vị trí của nó</li><li>Where is the book?</li><li>Where is the book?</li><li>Where is the newspaper?</li><li>Where is the cushion?</li><li>Where is the remote control?</li><li>Where is the blanket?</li></ul></div>
+</section></main><div id="stopbar"><span>🔊 Đang phát…</span><button onclick="stopAll()">⏹ Dừng</button></div><footer>Lucina English Class · Quà tặng học viên · Tiến độ được lưu trên trình duyệt của thiết bị này.</footer>
+<script>const D={"W": [["next to", "/nekst tə/", "kế bên", "phr"], ["behind", "/bɪˈhaɪnd/", "phía sau", "adj"], ["beside", "/bɪˈsaɪd/", "bên cạnh", "prep"], ["between", "/bɪˈtwiːn/", "ở giữa (hai vật)", "prep"], ["across from", "/əˈkrɒs frəm/", "đối diện", "prep"], ["on top of", "/ɒn tɒp əv/", "trên cùng, phía trên", "phr"], ["in the middle of", "/ɪn ðə ˈmɪdl əv/", "ở chính giữa", "phr"], ["on the right/left", "/ɒn ðə raɪt, left/", "bên phải / bên trái", "phr"], ["to the right/left", "/tə ðə raɪt, left/", "về phía bên phải / trái", "phr"], ["against the wall", "/əˈɡenst ðə wɔːl/", "dựa vào tường", "phr"], ["corner", "/ˈkɔːnə(r)/", "góc", "n"], ["bottom", "/ˈbɒtəm/", "đáy, dưới cùng", "n"], ["sofa", "/ˈsəʊfə/", "ghế sofa", "n"], ["table", "/ˈteɪbl/", "cái bàn", "n"], ["coffee table", "/ˈkɒfi ˌteɪbl/", "bàn uống cà phê", "n"], ["bed", "/bed/", "cái giường", "n"], ["bookcase", "/ˈbʊkkeɪs/", "giá sách", "n"], ["bookshelf", "/ˈbʊkʃelf/", "kệ sách", "n"], ["drawer", "/drɔː(r)/", "ngăn kéo", "n"], ["window", "/ˈwɪndəʊ/", "cửa sổ", "n"], ["plant", "/plɑːnt/", "cây cảnh", "n"], ["remote control", "/rɪˌməʊt kənˈtrəʊl/", "điều khiển từ xa", "n"], ["cushions", "/ˈkʊʃənz/", "gối tựa", "n"], ["computer", "/kəmˈpjuːtə(r)/", "máy tính", "n"], ["dictionary", "/ˈdɪkʃənəri/", "từ điển", "n"], ["hang", "/hæŋ/", "treo", "v"], ["hook", "/hʊk/", "móc, móc treo", "n"], ["end table", "/end ˈteɪbl/", "bàn nhỏ (cạnh sofa)", "n"], ["dinner table", "/ˈdɪnə ˌteɪbl/", "bàn ăn tối", "n"], ["doorknob", "/ˈdɔːnɒb/", "tay nắm cửa", "n"]], "L": ["Excuse me. Where is the [bank]?", "It's on Main Street, [next] to the post office.", "Is there a coffee shop [near] here?", "Yes. There's one [across] from the bank.", "Is it [between] the bank and the hotel?", "No, it's on the [corner]. You can't miss it."]};const W=D.W,L=D.L,NQ=Math.min(10,W.length),GAP=false,AU='/thuc-hanh/audio/u09',PAGE='de-l1-9';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let RATE=1,CUR=null,CB=null;const A=new Audio();
+function ico(b,p){if(!b)return;if(b.classList.contains('play'))b.textContent=p?'⏸':'▶';else b.innerHTML=(p?'⏸ Dừng':b.dataset.t);}
+function play(src,b){if(b&&!b.dataset.t)b.dataset.t=b.innerHTML;
+ if(CUR==src&&!A.paused){A.pause();return}
+ ico(CB,false);CUR=src;CB=b;A.src=src;A.playbackRate=RATE;A.play()}
+A.onplay=()=>{ico(CB,true);document.getElementById('stopbar').style.display='flex'};
+A.onpause=A.onended=()=>{ico(CB,false);document.getElementById('stopbar').style.display='none'};
+function stopAll(){A.pause();A.currentTime=0}
+function tab(i){stopAll();$$('nav button').forEach((b,k)=>b.classList.toggle('on',k==i));$$('.sec').forEach((s,k)=>s.classList.toggle('on',k==i));scrollTo(0,0)}
+function setRate(r,el){RATE=r;A.playbackRate=r;$$('.speed button').forEach(b=>b.classList.remove('on'));$$('.speed button[data-r="'+r+'"]').forEach(b=>b.classList.add('on'))}
+function norm(t){return t.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim()}
+const NUMW={'0':'zero','1':'one','2':'two','3':'three','4':'four','5':'five','6':'six','7':'seven','8':'eight','9':'nine','10':'ten','11':'eleven','30':'thirty','20':'twenty','5th':'fifth'};
+function nn(t){return norm(t).split(' ').map(w=>NUMW[w]||w).join(' ').replace(/\b(i'm)\b/g,'i am').replace(/\b(it's)\b/g,'it is').replace(/\b(don't)\b/g,'do not').replace(/\b(that's)\b/g,'that is').replace(/\b(what's)\b/g,'what is').replace(/\b(i'll)\b/g,'i will').replace(/\b(let's)\b/g,'let us').replace(/\b(there's)\b/g,'there is').replace(/\b(she's)\b/g,'she is').replace(/\b(he's)\b/g,'he is').replace(/\b(you're)\b/g,'you are').replace(/\b(they're)\b/g,'they are').replace(/\b(how's)\b/g,'how is').replace(/\b(doesn't)\b/g,'does not').replace(/\b(can't)\b/g,'cannot').replace(/\b(here's)\b/g,'here is').replace(/\b(i'd)\b/g,'i would').replace(/\b(it's)\b/g,'it is')}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+// ---- flashcards
+let fi=0;function fc(){const w=W[fi];$('#fcA').innerHTML='<b>'+w[0]+'</b><i>'+w[1]+'</i>'+(w[3]?'<span class="ps">'+w[3]+'</span>':'');$('#fcB').innerHTML='<b>'+w[2]+'</b>';$('#fcN').textContent=(fi+1)+' / '+W.length;$('.card').classList.remove('f')}
+function fcGo(d){fi=(fi+d+W.length)%W.length;fc()}
+// ---- vocab quiz
+function quiz(){const box=$('#qz');box.innerHTML='';const qs=shuffle(W).slice(0,NQ);let got=0,done=0;
+qs.forEach((w,k)=>{const wrong=shuffle(W.filter(x=>x[2]!=w[2])).slice(0,3).map(x=>x[2]);const opts=shuffle([w[2],...wrong]);
+const d=document.createElement('div');d.className='q';d.innerHTML='<div class="w">'+(k+1)+'. '+w[0]+'<span class="ip">'+w[1]+'</span>'+(w[3]?'<span class="ps">'+w[3]+'</span>':'')+'</div>';
+opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>{if(d.dataset.a)return;d.dataset.a=1;done++;
+if(o==w[2]){b.classList.add('ok');got++}else{b.classList.add('no');[...d.querySelectorAll('.opt')].find(x=>x.textContent==w[2]).classList.add('ok')}
+if(done==qs.length){$('#qzs').textContent='Kết quả: '+got+' / '+qs.length+(got==qs.length?' · Tuyệt vời! 🎉':' · Làm lại để đạt điểm tối đa nhé!');save('v',got==qs.length)}};d.appendChild(b)});box.appendChild(d)});$('#qzs').textContent=''}
+// ---- dictation
+function dict(){const box=$('#dc');box.innerHTML='';
+L.forEach((l,i)=>{const d=document.createElement('div');d.className='dl';const sp=i%2==0?'A':'B';
+const full=l.replace(/\[|\]/g,'');let body;
+if(GAP){body='<div class="line">'+l.replace(/\[([^\]]+)\]/g,(m,w)=>'<input class="gap" data-k="'+w+'" autocomplete="off" autocapitalize="off" spellcheck="false">')+'</div>'}
+else{body='<input data-k="'+full.replace(/"/g,'&quot;')+'" placeholder="Gõ lại câu bạn nghe được…" autocomplete="off" autocapitalize="off" spellcheck="false">'}
+d.innerHTML='<div class="row" style="justify-content:flex-start"><button class="play" onclick="play(\''+AU+'-'+(i+1)+'.mp3\',this)">▶</button><span class="sp">Câu '+(i+1)+' · '+sp+'</span></div>'+body+'<div class="mk"></div><div class="ans">Đáp án: '+(GAP?l.replace(/\[([^\]]+)\]/g,'<b>$1</b>'):full)+'</div>';box.appendChild(d)});
+$$('#dc input').forEach((inp,j,all)=>{inp.addEventListener('input',()=>{if(nn(inp.value)==nn(inp.dataset.k))mark(inp)});inp.addEventListener('change',()=>mark(inp));inp.addEventListener('keydown',e=>{if(e.key=='Enter'){e.preventDefault();mark(inp);const nx=all[j+1];if(nx)nx.focus()}})})}
+function mark(inp){const d=inp.closest('.dl');if(!inp.value.trim()){inp.classList.remove('ok','no')}else{const good=nn(inp.value)==nn(inp.dataset.k);inp.classList.toggle('ok',good);inp.classList.toggle('no',!good)}
+const ins=[...d.querySelectorAll('input')],filled=ins.filter(x=>x.value.trim()),bad=ins.filter(x=>x.classList.contains('no')),mk=d.querySelector('.mk');
+if(bad.length){mk.className='mk no';mk.textContent='✘ Chưa đúng — xem đáp án bên dưới, nghe lại và sửa nhé.';d.querySelector('.ans').style.display='block'}
+else if(filled.length==ins.length&&filled.length){mk.className='mk ok';mk.textContent='✔ Chính xác!';d.querySelector('.ans').style.display='none'}
+else{mk.className='mk';d.querySelector('.ans').style.display='none'}live()}
+function live(){const ins=$$('#dc input'),ok=ins.filter(x=>x.classList.contains('ok')).length,tried=ins.filter(x=>x.classList.contains('ok')||x.classList.contains('no')).length;if(tried)$('#dcs').textContent='Đúng '+ok+' / '+ins.length+(ok==ins.length?' · Xuất sắc! 🎉':'');if(ok==ins.length)save('d',true)}
+function dictCheck(){let ok=0,n=0;$$('#dc .dl').forEach(d=>{d.querySelectorAll('input').forEach(inp=>{n++;const good=nn(inp.value)==nn(inp.dataset.k);inp.classList.toggle('ok',good);inp.classList.toggle('no',!good);if(good)ok++});const all=[...d.querySelectorAll('input')].every(x=>x.classList.contains('ok'));const mk=d.querySelector('.mk');mk.className='mk '+(all?'ok':'no');mk.textContent=all?'✔ Chính xác!':'✘ Chưa đúng — xem đáp án bên dưới, nghe lại và sửa nhé.';d.querySelector('.ans').style.display=all?'none':'block'});
+$('#dcs').textContent='Đúng '+ok+' / '+n+(ok==n?' · Xuất sắc! 🎉':' · Xem đáp án, nghe lại và sửa nhé!');save('d',ok==n)}
+// ---- speaking
+function hideAll(h){$$('.sl .en').forEach(e=>e.classList.toggle('h',h))}
+function save(k,v){try{const key='qt-'+PAGE;const o=JSON.parse(localStorage.getItem(key)||'{}');if(v)o[k]=1;localStorage.setItem(key,JSON.stringify(o))}catch(e){}}
+
+fc();quiz();dict();</script><style>
+#gate{position:fixed;inset:0;z-index:50;background:#F3EEFC;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:28px 14px}
+#gate.on{display:flex}#gate .gb{background:#fff;border-radius:24px;max-width:460px;width:100%;padding:24px 22px 26px;font-family:Montserrat,system-ui,sans-serif;color:#2D1B45;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+#gate img{height:40px}#gate h2{color:#5B2A86;font-size:26px;margin:14px 0 6px}#gate p{color:#8F7BB3;margin:0 0 14px;font-size:15px;line-height:1.45}
+#gate label{display:block;font-weight:800;color:#5B2A86;margin:14px 0 6px;font-size:16px}#gate label i{color:#C0392B;font-style:normal}
+#gate input{width:100%;box-sizing:border-box;font:600 17px Montserrat,sans-serif;padding:13px 14px;border:2px solid #E3DCEF;border-radius:14px;outline:0}#gate input:focus{border-color:#5B2A86}
+#gate button{margin-top:20px;border:0;background:#5B2A86;color:#fff;font:800 17px Montserrat,sans-serif;padding:14px 26px;border-radius:99px;cursor:pointer}
+#gate .er{color:#C0392B;font-weight:700;font-size:14px;margin-top:10px;min-height:18px}
+#hv{max-width:980px;margin:0 auto;padding:8px 18px 0;font:600 13px Montserrat,sans-serif;color:#8F7BB3}#hv a{color:#5B2A86;font-weight:800;cursor:pointer;margin-left:6px}
+</style>
+<div id="gate"><div class="gb"><img src="/thuc-hanh/logo.png" alt="LEC"><h2>Thông tin học viên</h2><p>Điền đủ 3 thông tin dưới đây rồi bấm "Vào làm bài".</p>
+<label>Họ và tên <i>*</i></label><input id="gN" placeholder="VD: Nguyễn Thị Lan" autocomplete="name">
+<label>Mã lớp <i>*</i></label><input id="gC" placeholder="VD: L123">
+<label>Tên tiếng Anh của giáo viên <i>*</i></label><input id="gT" placeholder="VD: Lucy">
+<div class="er" id="gE"></div><button onclick="gateOk()">Vào làm bài →</button></div></div>
+<script>
+(function(){const K='lec-hv';let o={};try{o=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+const g=document.getElementById('gate');const bar=document.createElement('div');bar.id='hv';
+function showBar(){bar.innerHTML='👤 '+esc(o.n)+' · Lớp '+esc(o.c)+' · GV '+esc(o.t)+'<a onclick="gateEdit()">Sửa</a>';const h=document.querySelector('header')||document.querySelector('.top');(h&&h.parentNode?h.parentNode.insertBefore(bar,h.nextSibling):document.body.prepend(bar))}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+window.gateEdit=function(){document.getElementById('gN').value=o.n||'';document.getElementById('gC').value=o.c||'';document.getElementById('gT').value=o.t||'';g.classList.add('on');document.body.style.overflow='hidden'};
+const LOG_ON=false,EP='https://script.google.com/macros/s/AKfycbzlQfUBCplcfIeM0QeW9L5mvjxR_a7-TX8FAWC12g6foiKwVQdRk_lFoiklil3yt9K1/exec';
+function logIt(){if(!LOG_ON)return;const k='lec-log-'+location.pathname+'-'+new Date().toDateString();try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,1)}catch(e){}
+ fetch(EP,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'practice',name:o.n,classCode:o.c,teacher:o.t,page:document.title,url:location.pathname})}).catch(()=>{})}
+window.gateOk=function(){const n=document.getElementById('gN').value.trim(),c=document.getElementById('gC').value.trim(),t=document.getElementById('gT').value.trim();
+ if(!n||!c||!t){document.getElementById('gE').textContent='Vui lòng điền đủ Họ tên, Mã lớp và Tên giáo viên.';return}
+ o={n,c,t};try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}g.classList.remove('on');document.body.style.overflow='';showBar();logIt()};
+if(o.n&&o.c&&o.t){showBar();logIt()}else gateEdit();})();
+</script>
+</body></html>
