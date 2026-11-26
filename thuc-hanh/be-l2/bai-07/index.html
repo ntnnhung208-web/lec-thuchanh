@@ -117,23 +117,22 @@ fc();quiz();dict();</script><style>
 #gate .er{color:#C0392B;font-weight:700;font-size:14px;margin-top:10px;min-height:18px}
 #hv{max-width:980px;margin:0 auto;padding:8px 18px 0;font:600 13px Montserrat,sans-serif;color:#8F7BB3}#hv a{color:#5B2A86;font-weight:800;cursor:pointer;margin-left:6px}
 </style>
-<div id="gate"><div class="gb"><img src="/thuc-hanh/logo.png" alt="LEC"><h2>Thông tin học viên</h2><p>Điền đủ 3 thông tin dưới đây rồi bấm "Vào làm bài".</p>
-<label>Họ và tên <i>*</i></label><input id="gN" placeholder="VD: Nguyễn Thị Lan" autocomplete="name">
+<div id="gate"><div class="gb"><img src="/thuc-hanh/logo.png" alt="LEC"><h2>Thông tin học viên</h2><p>Điền <b>tên</b> và <b>mã lớp</b> để LEC lưu lại kết quả luyện tập và đánh giá sự tiến bộ của bạn qua từng bài. Chỉ cần điền 1 lần, lần sau vào bài sẽ tự nhớ.</p>
+<label>Tên của bạn <i>*</i> <small style="font-weight:500;color:#8A7AA6">(không cần họ)</small></label><input id="gN" placeholder="VD: Lan" autocomplete="given-name">
 <label>Mã lớp <i>*</i></label><input id="gC" placeholder="VD: L123">
-<label>Tên tiếng Anh của giáo viên <i>*</i></label><input id="gT" placeholder="VD: Lucy">
 <div class="er" id="gE"></div><button onclick="gateOk()">Vào làm bài →</button></div></div>
 <script>
 (function(){const K='lec-hv';let o={};try{o=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
 const g=document.getElementById('gate');const bar=document.createElement('div');bar.id='hv';
-function showBar(){bar.innerHTML='👤 '+esc(o.n)+' · Lớp '+esc(o.c)+' · GV '+esc(o.t)+'<a onclick="gateEdit()">Sửa</a>';const h=document.querySelector('header')||document.querySelector('.top');(h&&h.parentNode?h.parentNode.insertBefore(bar,h.nextSibling):document.body.prepend(bar))}
+function showBar(){bar.innerHTML='👤 '+esc(o.n)+' · Lớp '+esc(o.c)+'<a onclick="gateEdit()">Sửa</a>';const h=document.querySelector('header')||document.querySelector('.top');(h&&h.parentNode?h.parentNode.insertBefore(bar,h.nextSibling):document.body.prepend(bar))}
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-window.gateEdit=function(){document.getElementById('gN').value=o.n||'';document.getElementById('gC').value=o.c||'';document.getElementById('gT').value=o.t||'';g.classList.add('on');document.body.style.overflow='hidden'};
-const LOG_ON=false,EP='https://script.google.com/macros/s/AKfycbzlQfUBCplcfIeM0QeW9L5mvjxR_a7-TX8FAWC12g6foiKwVQdRk_lFoiklil3yt9K1/exec';
+window.gateEdit=function(){document.getElementById('gN').value=o.n||'';document.getElementById('gC').value=o.c||'';g.classList.add('on');document.body.style.overflow='hidden'};
+const LOG_ON=true,EP='https://script.google.com/macros/s/AKfycbzlQfUBCplcfIeM0QeW9L5mvjxR_a7-TX8FAWC12g6foiKwVQdRk_lFoiklil3yt9K1/exec';
 function logIt(){if(!LOG_ON)return;const k='lec-log-'+location.pathname+'-'+new Date().toDateString();try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,1)}catch(e){}
- fetch(EP,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'practice',name:o.n,classCode:o.c,teacher:o.t,page:document.title,url:location.pathname})}).catch(()=>{})}
-window.gateOk=function(){const n=document.getElementById('gN').value.trim(),c=document.getElementById('gC').value.trim(),t=document.getElementById('gT').value.trim();
- if(!n||!c||!t){document.getElementById('gE').textContent='Vui lòng điền đủ Họ tên, Mã lớp và Tên giáo viên.';return}
- o={n,c,t};try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}g.classList.remove('on');document.body.style.overflow='';showBar();logIt()};
-if(o.n&&o.c&&o.t){showBar();logIt()}else gateEdit();})();
+ fetch(EP,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'practice',name:o.n,classCode:o.c,teacher:o.t||'',page:document.title,url:location.pathname})}).catch(()=>{})}
+window.gateOk=function(){const n=document.getElementById('gN').value.trim(),c=document.getElementById('gC').value.trim();
+ if(!n||!c){document.getElementById('gE').textContent='Vui lòng điền Tên và Mã lớp.';return}
+ o={n,c,t:o.t||''};try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}g.classList.remove('on');document.body.style.overflow='';showBar();logIt()};
+if(o.n&&o.c){showBar();logIt()}else gateEdit();})();
 </script>
 </body></html>
